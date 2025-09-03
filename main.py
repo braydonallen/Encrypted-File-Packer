@@ -50,7 +50,7 @@ def random_alias(length=3):
 
 def GetRandom(opt):
     if opt == "alias":
-        return random_alias(random.randint(2,5))  # random length 1–4
+        return random_alias(random.randint(2,5))
     return random.choice(OPTIONS[opt])
 
 for i in OPTIONS:
