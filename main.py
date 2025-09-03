@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from cryptography.fernet import Fernet
-import gzip, sys, math, random, keyword, builtins, string
+import gzip, sys, math, random, keyword, builtins, string, argparse
 
 OPTIONS = {
     "encode": [
@@ -73,11 +73,12 @@ code_base = code_tpl.format(
     cipher="{CIPHER}",
 )
 
-if len(sys.argv) != 2:
-    print(f'err: incorrect num of arguments (expected 2, got {len(sys.argv)})')
-    exit(-1)
+ap = argparse.ArgumentParser()
+ap.add_argument("src")
+ap.add_argument("-o","--out", default="test.py")
+args = ap.parse_args()
 
-with open(sys.argv[1], 'r') as file:
+with open(args.src, 'r', encoding='utf-8') as file:
     contents = file.read()
 
     txt = contents.encode()
@@ -94,4 +95,5 @@ with open(sys.argv[1], 'r') as file:
         CIPHER=txt
     )
 
-    print(final_code)
+    with open(args.out, "w", encoding="utf-8") as f:
+        f.write(final_code)
