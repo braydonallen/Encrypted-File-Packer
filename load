@@ -1,0 +1,4 @@
+import winsound
+SOUND_FREQUENCY = 1000
+SOUND_SPEED = 500
+winsound.Beep(SOUND_FREQUENCY, SOUND_SPEED*5)
